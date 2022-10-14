@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameFieldController : MonoBehaviour
 {
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private GameUIController _gameUIController;
     [SerializeField] private Circle _circle;
 
     [SerializeField] private MyGameObject _coinPrefab;
@@ -65,6 +66,8 @@ public class GameFieldController : MonoBehaviour
             SpawnObject(MyGameObjectType.Thorn);
             yield return new WaitForEndOfFrame();
         }
+
+        _gameUIController.LoadingDone();
     }
 
     private void SpawnObject(MyGameObjectType type)

@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Circle _circle;
-    [SerializeField] private ScoreController _scoreController;
+    [SerializeField] private GameUIController _gameUIController;
     [SerializeField] private MainMenuController _mainMenuController;
     [SerializeField] private GameOverController _gameOverController;
 
@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _circle.OnThornCollapsed += Circle_OnThornCollapsed;
-        _scoreController.OnWin += ScoreController_OnWin;
+        _gameUIController.OnWin += ScoreController_OnWin;
     }
 
     private int _rememberDifficulty;

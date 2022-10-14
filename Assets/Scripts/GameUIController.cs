@@ -1,12 +1,13 @@
 using TMPro;
 using UnityEngine;
 
-public class ScoreController : MonoBehaviour
+public class GameUIController : MonoBehaviour
 {
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private Circle _circle;
 
-    [SerializeField] private GameObject _panel;
+    [SerializeField] private GameObject _scorePanel;
+    [SerializeField] private GameObject _loadingPanel;
     [SerializeField] private TextMeshProUGUI _scoreText;
     private int _score;
     private int _targetedScore;
@@ -18,8 +19,14 @@ public class ScoreController : MonoBehaviour
     {
         _score = 0;
         _targetedScore = difficulty;
-        _panel.SetActive(true);
+        _scorePanel.SetActive(true);
+        _loadingPanel.SetActive(true);
         UpdateUI();
+    }
+
+    public void LoadingDone()
+    {
+        _loadingPanel.SetActive(false);
     }
 
     private void Start()
@@ -35,7 +42,7 @@ public class ScoreController : MonoBehaviour
         if (_score == _targetedScore)
         {
             OnWin?.Invoke();
-            _panel.SetActive(false);
+            _scorePanel.SetActive(false);
         }
     }
 

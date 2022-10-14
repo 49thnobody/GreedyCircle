@@ -9,6 +9,13 @@ public class PlayerController : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject()) return;
 
+        // проверка тапает ли пользователь по интерфейсу
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        {
+            if (EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId))
+                return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             var click = Camera.main.ScreenToWorldPoint(Input.mousePosition);
